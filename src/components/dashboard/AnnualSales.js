@@ -19,7 +19,7 @@ const AnnualSales = (props) => {
       paddingTop: 20,
     },
     pieChartDiv: {
-      height: 290,
+      height: 300,
       textAlign: 'center'
     }
   };
@@ -41,8 +41,8 @@ const AnnualSales = (props) => {
             <ResponsiveContainer>
               <PieChart >
                 <Pie
-                  innerRadius={80}
-                  outerRadius={130}
+                  innerRadius={70}
+                  outerRadius={115}
                   data={props.data}
                   fill={"#8884d8"}
                   label={ getLabel }

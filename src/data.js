@@ -64,13 +64,17 @@ const data = {
     ],
 
     annualSalesByRegion: [
-      {region: 'Russia', value: 400, color: cyan600 },
-      {region: 'USA', value: 500, color: pink600 },
-      {region: 'China', value: 600, color: purple600 },
-      {region: 'Europe', value: 300, color: red600 },
-      {region: 'India', value: 200, color: blue600 },
+      {region: 'Russia', value: getRandomInt(0, 1000), color: cyan600 },
+      {region: 'USA', value:  getRandomInt(0, 1000), color: pink600 },
+      {region: 'China', value:  getRandomInt(0, 1000), color: purple600 },
+      {region: 'Europe', value:  getRandomInt(0, 1000), color: red600 },
+      {region: 'India', value:  getRandomInt(0, 1000), color: blue600 },
     ]
   }
 };
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 export default data;
