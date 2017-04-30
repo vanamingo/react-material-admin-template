@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import Paper from 'material-ui/Paper';
-import {white, pink600, pink500} from 'material-ui/styles/colors';
+import {white, pink100, pink500} from 'material-ui/styles/colors';
 import {BarChart, Bar, ResponsiveContainer, XAxis} from 'recharts';
 import GlobalStyles from '../../styles';
 
@@ -8,7 +8,7 @@ const MonthlySales = (props) => {
 
   const styles = {
     paper: {
-      backgroundColor: pink600,
+      backgroundColor: pink100,
       height: 150
     },
     div: {

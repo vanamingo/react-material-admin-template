@@ -30,7 +30,8 @@ const NewOrders = (props) => {
       <div style={styles.div}>
         <ResponsiveContainer >
           <LineChart data={props.data}>
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={2} />
+            <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={3} />
+            <Line type="monotone" dataKey="uv" stroke="#8884d8" strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>
       </div>
