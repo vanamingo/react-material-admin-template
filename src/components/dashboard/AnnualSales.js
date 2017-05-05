@@ -50,7 +50,7 @@ const AnnualSales = (props) => {
                   
                   >
                   {
-                    props.data.map((item) => <Cell key={item.name} fill={item.color}/>)
+                    props.data.map((item) => <Cell key={item.region} fill={item.color}/>)
                   }
                   
                 </Pie>
