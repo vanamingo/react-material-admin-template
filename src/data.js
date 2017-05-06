@@ -3,7 +3,7 @@ import Assessment from 'material-ui/svg-icons/action/assessment';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
 import Web from 'material-ui/svg-icons/av/web';
-import { cyan600, pink600, purple600, blue600, red600 , orange300} from 'material-ui/styles/colors';
+import { cyan600, pink600, purple600, blue600, red600 , orange300, green600} from 'material-ui/styles/colors';
 import ExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
@@ -14,7 +14,7 @@ let colorsDictionary = {
   countries: {
     Russia: red600,
     USA: blue600,
-    China: purple600,
+    China: green600,
     Europe: pink600,
     India: orange300
   }
