@@ -9,6 +9,7 @@ import NewOrders from '../components/dashboard/NewOrders';
 import MonthlySales from '../components/dashboard/MonthlySales';
 import BrowserUsage from '../components/dashboard/BrowserUsage';
 import AnnualSales from '../components/dashboard/AnnualSales';
+import StackedMonthlySales from '../components/dashboard/StackedMonthlySales';
 import RecentlyProducts from '../components/dashboard/RecentlyProducts';
 import globalStyles from '../styles';
 import Data from '../data';
@@ -72,6 +73,12 @@ const DashboardPage = () => {
 
         <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 m-b-15 ">
           <AnnualSales data={Data.dashBoardPage.annualSalesByRegion}/>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 m-b-15 ">
+          <StackedMonthlySales data={Data.dashBoardPage.annualSalesByRegion}/>
         </div>
       </div>
     </div>
