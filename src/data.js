@@ -9,7 +9,15 @@ import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import { dynamicData } from '../src/dynamicData';
 
-
+let colorsDictionary = {
+  countries: {
+    Russia: red600,
+    USA: blue600,
+    China: purple600,
+    Europe: pink600,
+    India: cyan600
+  }
+};
 
 const data = {
   menus: [
@@ -65,14 +73,14 @@ const data = {
       { name: 'Firefox', value: 300, color: pink600, icon: <ChevronRight /> },
       { name: 'Safari', value: 300, color: purple600, icon: <ExpandLess /> }
     ],
-
-    annualSalesByRegion: [
-      { region: 'Russia', value: getRandomInt(0, 1000), color: cyan600 },
-      { region: 'USA', value: getRandomInt(0, 1000), color: pink600 },
-      { region: 'China', value: getRandomInt(0, 1000), color: purple600 },
-      { region: 'Europe', value: getRandomInt(0, 1000), color: red600 },
-      { region: 'India', value: getRandomInt(0, 1000), color: blue600 },
-    ]
+    annualSalesByRegion: dynamicData
+      .map(function (v) {
+        return {
+          region: v.region,
+          value: v.getTotalSales(),
+          color: colorsDictionary.countries[v.region]
+        }
+      })
   }
 };
 

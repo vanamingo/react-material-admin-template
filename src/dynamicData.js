@@ -1,15 +1,6 @@
 import { cyan600, pink600, purple600, blue600, red600 } from 'material-ui/styles/colors';
 
 let dynamicData = getRegionSales();
-let colorsDictionary = {
-  countries:{
-    Russia: red600, 
-    USA: blue600,
-    China: purple600,
-    Europe: pink600,
-    India: cyan600 
-  }
-};
 
 console.log('regionSaleZ');
 console.log(dynamicData);
@@ -25,12 +16,28 @@ function getAnnualSalesByRegion(){
 
 function getRegionSales(){ 
   return [
-      { region: 'Russia', value: getProductsSales(800, 1000) },
-      { region: 'USA', value: getProductsSales(300, 1300) },
-      { region: 'China', value: getProductsSales(800, 1500) },
-      { region: 'Europe', value: getProductsSales(0, 1000) },
-      { region: 'India', value: getProductsSales(100, 600) }
+      new region('Russia', getProductsSales(80, 100)),
+      new region('USA', getProductsSales(30, 130)),
+      new region('China', getProductsSales(80, 150)),
+      new region('Europe', getProductsSales(0, 100)),
+      new region('India', getProductsSales(10, 60))
     ];
+}
+
+function region(region, sales){
+    this.region = region;
+    this.sales = sales;
+}
+
+region.prototype.getTotalSales = function(){    
+    var result = 
+    this.sales
+    .map(function(v){ return v.getTotalSales(); })
+    .reduce(function(previousValue, currentValue){
+        return previousValue + currentValue;
+    });
+
+    return result;
 }
 
 function getProductsSales(min, max){
