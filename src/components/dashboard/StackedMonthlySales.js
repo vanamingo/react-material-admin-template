@@ -13,10 +13,6 @@ import Data from '../../data';
 const countryColors = Data.colorsDictionary.countries;
 
 const StackedMonthlySales = (props) => {
-
-  console.log('StackedMonthlySales props');
-  console.log(props);
-
   const styles = {
     paper: {
       minHeight: 344,
