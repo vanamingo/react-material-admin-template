@@ -1,4 +1,5 @@
 import { cyan600, pink600, purple600, blue600, red600 } from 'material-ui/styles/colors';
+import _ from 'lodash';
 
 class ProductSales {
     constructor(product, sales) {
