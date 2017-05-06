@@ -12,7 +12,7 @@ import Data from '../../data';
 
 const countryColors = Data.colorsDictionary.countries;
 
-const StackedMonthlySales = (props) => {
+
   const styles = {
     paper: {
       minHeight: 344,
@@ -27,43 +27,44 @@ const StackedMonthlySales = (props) => {
     }
   };
 
+  class StackedMonthlySales extends React.Component {
 
+    render() {
+      return (
+        <Paper style={styles.paper}>
+          <span style={GlobalStyles.title}>Monthly sales</span>
 
+          <div style={GlobalStyles.clear} />
 
-  return (
-    <Paper style={styles.paper}>
-      <span style={GlobalStyles.title}>Monthly sales</span>
+          <div className="row">
 
-      <div style={GlobalStyles.clear}/>
-
-      <div className="row">
-
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div style={styles.pieChartDiv}>
-            <ResponsiveContainer>
-              <BarChart width={600} height={300} data={props.data}
-                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="USA" stackId="a" fill={ countryColors['USA'] } />
-                <Bar dataKey="Russia" stackId="a" fill={ countryColors['Russia'] } />
-                <Bar dataKey="China" stackId="a" fill = { countryColors['China'] } />
-                <Bar dataKey="Europe" stackId="a" fill = { countryColors['Europe'] } />                
-                <Bar dataKey="India" stackId="a" fill = { countryColors['India'] } />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div style={styles.pieChartDiv}>
+                <ResponsiveContainer>
+                  <BarChart width={600} height={300} data={this.props.data}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="USA" stackId="a" fill={countryColors['USA']} />
+                    <Bar dataKey="Russia" stackId="a" fill={countryColors['Russia']} />
+                    <Bar dataKey="China" stackId="a" fill={countryColors['China']} />
+                    <Bar dataKey="Europe" stackId="a" fill={countryColors['Europe']} />
+                    <Bar dataKey="India" stackId="a" fill={countryColors['India']} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </Paper>
-  );
-};
-
+        </Paper>
+      )
+    }
+  };
+/*
 StackedMonthlySales.propTypes = {
   data: PropTypes.array
 };
-
+*/
 export default StackedMonthlySales;
