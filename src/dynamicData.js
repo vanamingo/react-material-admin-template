@@ -35,6 +35,16 @@ class Region {
 
         return result;
     }
+
+    getSalesByMonths(monthNum) {
+        let regionSales = _(this.sales).map('sales').flatten().value();
+        return _(regionSales)
+            .filter({ month: monthNum })
+            .map('sales')
+            .reduce(function (prev, current) {
+                return prev + current;
+            });
+    }
 }
 
 let dynamicData = getRegionSales();

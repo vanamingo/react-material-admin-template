@@ -3,11 +3,12 @@ import Assessment from 'material-ui/svg-icons/action/assessment';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
 import Web from 'material-ui/svg-icons/av/web';
-import { cyan600, pink600, purple600, blue600, red600 } from 'material-ui/styles/colors';
+import { cyan600, pink600, purple600, blue600, red600 , orange300} from 'material-ui/styles/colors';
 import ExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import { dynamicData } from '../src/dynamicData';
+import _ from 'lodash';
 
 let colorsDictionary = {
   countries: {
@@ -15,11 +16,12 @@ let colorsDictionary = {
     USA: blue600,
     China: purple600,
     Europe: pink600,
-    India: cyan600
+    India: orange300
   }
 };
 
 const data = {
+  colorsDictionary: colorsDictionary,
   menus: [
     { text: 'DashBoard', icon: <Assessment />, link: '/dashboard' },
     { text: 'Form Page', icon: <Web />, link: '/form' },
@@ -73,6 +75,7 @@ const data = {
       { name: 'Firefox', value: 300, color: pink600, icon: <ChevronRight /> },
       { name: 'Safari', value: 300, color: purple600, icon: <ExpandLess /> }
     ],
+
     annualSalesByRegion: dynamicData
       .map(function (v) {
         return {
@@ -80,12 +83,49 @@ const data = {
           value: v.getTotalSales(),
           color: colorsDictionary.countries[v.region]
         }
-      })
+      }),
+
+    stackedMothSales: [
+      getStackedSalesMonth('Jan', 0),
+      getStackedSalesMonth('Feb', 1),
+      getStackedSalesMonth('Mar', 2),
+      getStackedSalesMonth('Apr', 3),
+      getStackedSalesMonth('May', 4),
+      getStackedSalesMonth('Jun', 5),
+      getStackedSalesMonth('Jul', 6),
+      getStackedSalesMonth('Aug', 7),
+      getStackedSalesMonth('Sep', 8),
+      getStackedSalesMonth('Oct', 9),
+      getStackedSalesMonth('Nov', 10),
+      getStackedSalesMonth('Dec', 11),
+    ]
   }
 };
+
+function getStackedSalesMonth(monthName, monthNumber) {
+
+  let d = _(dynamicData).mapKeys('region').value()
+
+  return {
+    name: monthName,
+    Russia: d['Russia'].getSalesByMonths(monthNumber),
+    USA: d['USA'].getSalesByMonths(monthNumber),
+    China: d['China'].getSalesByMonths(monthNumber),
+    Europe: d['Europe'].getSalesByMonths(monthNumber),
+    India: d['India'].getSalesByMonths(monthNumber)
+  };
+}
+
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function get(monthSales) {
+  _(arr).flatten().filter({ month: 0 }).map('sales').reduce(function (prev, current) { return prev + current; })
+
+}
+
 export default data;
+
+//export default data;
