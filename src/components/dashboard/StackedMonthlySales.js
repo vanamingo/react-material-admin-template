@@ -31,16 +31,16 @@ const styles = {
 };
 
 const persons = [
-  {value: 0, name: 'Oliver Hansen'},
-  {value: 1, name: 'Van Henry'},
-  {value: 2, name: 'April Tucker'},
-  {value: 3, name: 'Ralph Hubbard'},
-  {value: 4, name: 'Omar Alexander'},
-  {value: 5, name: 'Carlos Abbott'},
-  {value: 6, name: 'Miriam Wagner'},
-  {value: 7, name: 'Bradley Wilkerson'},
-  {value: 8, name: 'Virginia Andrews'},
-  {value: 9, name: 'Kelly Snyder'},
+  { value: 0, name: 'Oliver Hansen' },
+  { value: 1, name: 'Van Henry' },
+  { value: 2, name: 'April Tucker' },
+  { value: 3, name: 'Ralph Hubbard' },
+  { value: 4, name: 'Omar Alexander' },
+  { value: 5, name: 'Carlos Abbott' },
+  { value: 6, name: 'Miriam Wagner' },
+  { value: 7, name: 'Bradley Wilkerson' },
+  { value: 8, name: 'Virginia Andrews' },
+  { value: 9, name: 'Kelly Snyder' },
 ];
 
 class StackedMonthlySales extends React.Component {
@@ -48,14 +48,36 @@ class StackedMonthlySales extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: null,
+      values: [],
       text: "constructor"
     };
 
   }
 
-  handleChange = (event, index, value) => this.setState({ value });
-  
+  handleChange = (event, index, values) => this.setState({ values });
+
+  selectionRenderer = (values) => {
+    switch (values.length) {
+      case 0:
+        return '';
+      case 1:
+        return persons[values[0]].name;
+      default:
+        return `${values.length} names selected`;
+    }
+  }
+
+  menuItems(persons) {
+    return persons.map((person) => (
+      <MenuItem
+        key={person.value}
+        insetChildren={true}
+        checked={this.state.values.includes(person.value)}
+        value={person.value}
+        primaryText={person.name}
+      />
+    ));
+  }
 
   render() {
     return (
@@ -67,13 +89,13 @@ class StackedMonthlySales extends React.Component {
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <SelectField
-              floatingLabelText="Ready?"
-              value={this.state.value}
+              multiple={true}
+              hintText="Select a name"
+              value={this.state.values}
               onChange={this.handleChange}
+              selectionRenderer={this.selectionRenderer}
             >
-              <MenuItem value={null} primaryText="" />
-              <MenuItem value={"false"} primaryText="No" />
-              <MenuItem value={"true"} primaryText="Yes" />
+              {this.menuItems(persons)}
             </SelectField>
             <span> Hello {this.state.value} - {this.state.text} </span>
             <div style={styles.pieChartDiv}>
