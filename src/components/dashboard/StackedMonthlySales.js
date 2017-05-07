@@ -31,17 +31,13 @@ const styles = {
 };
 
 const persons = [
-  { value: 0, name: 'Oliver Hansen' },
-  { value: 1, name: 'Van Henry' },
-  { value: 2, name: 'April Tucker' },
-  { value: 3, name: 'Ralph Hubbard' },
-  { value: 4, name: 'Omar Alexander' },
-  { value: 5, name: 'Carlos Abbott' },
-  { value: 6, name: 'Miriam Wagner' },
-  { value: 7, name: 'Bradley Wilkerson' },
-  { value: 8, name: 'Virginia Andrews' },
-  { value: 9, name: 'Kelly Snyder' },
+  { value: 'Product1', name: 'Product1' },
+  { value: 'Product2', name: 'Product2' },
+  { value: 'Product3', name: 'Product3' },
+  { value: 'Product4', name: 'Product4' },
 ];
+
+const personDictionary = _(persons).mapKeys('value').value();
 
 class StackedMonthlySales extends React.Component {
 
@@ -61,7 +57,7 @@ class StackedMonthlySales extends React.Component {
       case 0:
         return '';
       case 1:
-        return persons[values[0]].name;
+        return personDictionary[values[0]].name;
       default:
         return `${values.length} names selected`;
     }
@@ -81,8 +77,6 @@ class StackedMonthlySales extends React.Component {
 
   render() {
     return (
-
-
       <Paper style={styles.paper}>
         <span style={GlobalStyles.title}>Monthly sales</span>
         <div style={GlobalStyles.clear} />
@@ -90,14 +84,14 @@ class StackedMonthlySales extends React.Component {
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <SelectField
               multiple={true}
-              hintText="Select a name"
+              hintText="All products"
               value={this.state.values}
               onChange={this.handleChange}
               selectionRenderer={this.selectionRenderer}
             >
               {this.menuItems(persons)}
             </SelectField>
-            <span> Hello {this.state.value} - {this.state.text} </span>
+            <span> Hello {this.state.values.join()} - {this.state.text} </span>
             <div style={styles.pieChartDiv}>
               <ResponsiveContainer>
                 <BarChart width={600} height={300} data={this.props.data}
