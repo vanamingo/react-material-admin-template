@@ -89,34 +89,34 @@ const data = {
   }
 };
 
-function getstackedMothSales() {
+function getstackedMothSales(products) {
   return [
-    getStackedSalesForMonth('Jan', 0),
-    getStackedSalesForMonth('Feb', 1),
-    getStackedSalesForMonth('Mar', 2),
-    getStackedSalesForMonth('Apr', 3),
-    getStackedSalesForMonth('May', 4),
-    getStackedSalesForMonth('Jun', 5),
-    getStackedSalesForMonth('Jul', 6),
-    getStackedSalesForMonth('Aug', 7),
-    getStackedSalesForMonth('Sep', 8),
-    getStackedSalesForMonth('Oct', 9),
-    getStackedSalesForMonth('Nov', 10),
-    getStackedSalesForMonth('Dec', 11),
+    getStackedSalesForMonth('Jan', 0, products),
+    getStackedSalesForMonth('Feb', 1, products),
+    getStackedSalesForMonth('Mar', 2, products),
+    getStackedSalesForMonth('Apr', 3, products),
+    getStackedSalesForMonth('May', 4, products),
+    getStackedSalesForMonth('Jun', 5, products),
+    getStackedSalesForMonth('Jul', 6, products),
+    getStackedSalesForMonth('Aug', 7, products),
+    getStackedSalesForMonth('Sep', 8, products),
+    getStackedSalesForMonth('Oct', 9, products),
+    getStackedSalesForMonth('Nov', 10, products),
+    getStackedSalesForMonth('Dec', 11, products),
   ];
 }
 
-function getStackedSalesForMonth(monthName, monthNumber) {
+function getStackedSalesForMonth(monthName, monthNumber, products) {
 
   let d = _(dynamicData).mapKeys('region').value()
 
   return {
     name: monthName,
-    Russia: d['Russia'].getSalesByMonths(monthNumber),
-    USA: d['USA'].getSalesByMonths(monthNumber),
-    China: d['China'].getSalesByMonths(monthNumber),
-    Europe: d['Europe'].getSalesByMonths(monthNumber),
-    India: d['India'].getSalesByMonths(monthNumber)
+    Russia: d['Russia'].getSalesByMonths(monthNumber, products),
+    USA: d['USA'].getSalesByMonths(monthNumber, products),
+    China: d['China'].getSalesByMonths(monthNumber, products),
+    Europe: d['Europe'].getSalesByMonths(monthNumber, products),
+    India: d['India'].getSalesByMonths(monthNumber, products)
   };
 }
 

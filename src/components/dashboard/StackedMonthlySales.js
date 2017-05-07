@@ -48,12 +48,15 @@ class StackedMonthlySales extends React.Component {
     this.state = {
       values: [],
       text: "constructor",
-      data: props.getStackedMothSales()
+      data: props.getStackedMothSales([])
     };
 
   }
 
-  handleChange = (event, index, values) => this.setState({ values });
+  handleChange = (event, index, values) => this.setState(
+    { values: values,
+      data: this.props.getStackedMothSales(values || [])  
+    });
 
   selectionRenderer = (values) => {
     switch (values.length) {

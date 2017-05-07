@@ -36,10 +36,19 @@ class Region {
         return result;
     }
 
-    getSalesByMonths(monthNum) {
-        let regionSales = _(this.sales).map('sales').flatten().value();
+    getSalesByMonths(monthNum, products) {
+        console.log('products');
+        console.log(products);
+        let regionSales = _(this.sales)
+        .filter(function(value){ 
+                return !_(products).some() || products.includes(value.product);
+              })
+        .map('sales')
+        .flatten()
+        .value();
+        
         return _(regionSales)
-            .filter({ month: monthNum })
+            .filter({ month: monthNum })            
             .map('sales')
             .reduce(function (prev, current) {
                 return prev + current;
