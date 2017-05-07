@@ -78,7 +78,7 @@ const DashboardPage = () => {
 
       <div className="row">
         <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 m-b-15 ">
-          <StackedMonthlySales data={Data.dashBoardPage.stackedMothSales}/>
+          <StackedMonthlySales getStackedMothSales={Data.dashBoardPage.getStackedMothSales}/>
         </div>
       </div>
     </div>

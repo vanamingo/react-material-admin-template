@@ -42,10 +42,13 @@ const personDictionary = _(persons).mapKeys('value').value();
 class StackedMonthlySales extends React.Component {
 
   constructor(props) {
+    console.log('props');
+    console.log(props);
     super(props);
     this.state = {
       values: [],
-      text: "constructor"
+      text: "constructor",
+      data: props.getStackedMothSales()
     };
 
   }
@@ -94,7 +97,7 @@ class StackedMonthlySales extends React.Component {
             <span> Hello {this.state.values.join()} - {this.state.text} </span>
             <div style={styles.pieChartDiv}>
               <ResponsiveContainer>
-                <BarChart width={600} height={300} data={this.props.data}
+                <BarChart width={600} height={300} data={this.state.data}
                   margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <XAxis dataKey="name" />
                   <YAxis />

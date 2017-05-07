@@ -3,7 +3,7 @@ import Assessment from 'material-ui/svg-icons/action/assessment';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import PermIdentity from 'material-ui/svg-icons/action/perm-identity';
 import Web from 'material-ui/svg-icons/av/web';
-import { cyan600, pink600, purple600, blue600, red600 , orange300, green600} from 'material-ui/styles/colors';
+import { cyan600, pink600, purple600, blue600, red600, orange300, green600 } from 'material-ui/styles/colors';
 import ExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
@@ -85,24 +85,28 @@ const data = {
         }
       }),
 
-    stackedMothSales: [
-      getStackedSalesMonth('Jan', 0),
-      getStackedSalesMonth('Feb', 1),
-      getStackedSalesMonth('Mar', 2),
-      getStackedSalesMonth('Apr', 3),
-      getStackedSalesMonth('May', 4),
-      getStackedSalesMonth('Jun', 5),
-      getStackedSalesMonth('Jul', 6),
-      getStackedSalesMonth('Aug', 7),
-      getStackedSalesMonth('Sep', 8),
-      getStackedSalesMonth('Oct', 9),
-      getStackedSalesMonth('Nov', 10),
-      getStackedSalesMonth('Dec', 11),
-    ]
+    getStackedMothSales: getstackedMothSales
   }
 };
 
-function getStackedSalesMonth(monthName, monthNumber) {
+function getstackedMothSales() {
+  return [
+    getStackedSalesForMonth('Jan', 0),
+    getStackedSalesForMonth('Feb', 1),
+    getStackedSalesForMonth('Mar', 2),
+    getStackedSalesForMonth('Apr', 3),
+    getStackedSalesForMonth('May', 4),
+    getStackedSalesForMonth('Jun', 5),
+    getStackedSalesForMonth('Jul', 6),
+    getStackedSalesForMonth('Aug', 7),
+    getStackedSalesForMonth('Sep', 8),
+    getStackedSalesForMonth('Oct', 9),
+    getStackedSalesForMonth('Nov', 10),
+    getStackedSalesForMonth('Dec', 11),
+  ];
+}
+
+function getStackedSalesForMonth(monthName, monthNumber) {
 
   let d = _(dynamicData).mapKeys('region').value()
 
