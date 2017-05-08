@@ -20,6 +20,8 @@ let colorsDictionary = {
   }
 };
 
+let countries = ['Russia', 'USA', 'China', 'Europe', 'India'];
+
 const data = {
   colorsDictionary: colorsDictionary,
   menus: [
@@ -89,35 +91,56 @@ const data = {
   }
 };
 
-function getstackedMothSales(products) {
+function getstackedMothSales(products, countries) {
   return [
-    getStackedSalesForMonth('Jan', 0, products),
-    getStackedSalesForMonth('Feb', 1, products),
-    getStackedSalesForMonth('Mar', 2, products),
-    getStackedSalesForMonth('Apr', 3, products),
-    getStackedSalesForMonth('May', 4, products),
-    getStackedSalesForMonth('Jun', 5, products),
-    getStackedSalesForMonth('Jul', 6, products),
-    getStackedSalesForMonth('Aug', 7, products),
-    getStackedSalesForMonth('Sep', 8, products),
-    getStackedSalesForMonth('Oct', 9, products),
-    getStackedSalesForMonth('Nov', 10, products),
-    getStackedSalesForMonth('Dec', 11, products),
+    getStackedSalesForMonth('Jan', 0, products, countries),
+    getStackedSalesForMonth('Feb', 1, products, countries),
+    getStackedSalesForMonth('Mar', 2, products, countries),
+    getStackedSalesForMonth('Apr', 3, products, countries),
+    getStackedSalesForMonth('May', 4, products, countries),
+    getStackedSalesForMonth('Jun', 5, products, countries),
+    getStackedSalesForMonth('Jul', 6, products, countries),
+    getStackedSalesForMonth('Aug', 7, products, countries),
+    getStackedSalesForMonth('Sep', 8, products, countries),
+    getStackedSalesForMonth('Oct', 9, products, countries),
+    getStackedSalesForMonth('Nov', 10, products, countries),
+    getStackedSalesForMonth('Dec', 11, products, countries),
   ];
 }
 
-function getStackedSalesForMonth(monthName, monthNumber, products) {
+function getStackedSalesForMonth(monthName, monthNumber, products, selectedCountries) {
 
-  let d = _(dynamicData).mapKeys('region').value()
+  let d = _(dynamicData).mapKeys('region').value();
 
-  return {
+  let filteredCountries = _(countries)
+    .filter(function (c) {
+      return selectedCountries.length == 0 || selectedCountries.includes(c);
+    });
+
+    window.d = d;
+  window.filteredCountries = filteredCountries;
+  window.monthNumber = monthNumber;
+  window.products = products;
+  var result = filteredCountries
+    .zipObject(filteredCountries.map(
+      function (c) { 
+         return d[c].getSalesByMonths(monthNumber, products)
+        }).value())
+    .value();
+
+  console.log('result');
+  console.log(result);
+
+  return result;
+
+  /*return {
     name: monthName,
     Russia: d['Russia'].getSalesByMonths(monthNumber, products),
     USA: d['USA'].getSalesByMonths(monthNumber, products),
     China: d['China'].getSalesByMonths(monthNumber, products),
     Europe: d['Europe'].getSalesByMonths(monthNumber, products),
     India: d['India'].getSalesByMonths(monthNumber, products)
-  };
+  };*/
 }
 
 

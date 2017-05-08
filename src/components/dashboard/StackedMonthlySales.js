@@ -12,9 +12,7 @@ import Data from '../../data';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-
-const countryColors = Data.colorsDictionary.countries;
-
+const countryColors = Data.colorsDictionary.countries; 
 
 const styles = {
   paper: {
@@ -30,14 +28,14 @@ const styles = {
   }
 };
 
-const persons = [
+const products = [
   { value: 'Product1', name: 'Product1' },
   { value: 'Product2', name: 'Product2' },
   { value: 'Product3', name: 'Product3' },
   { value: 'Product4', name: 'Product4' },
 ];
 
-const personDictionary = _(persons).mapKeys('value').value();
+const personDictionary = _(products).mapKeys('value').value();
 
 class StackedMonthlySales extends React.Component {
 
@@ -46,14 +44,17 @@ class StackedMonthlySales extends React.Component {
     this.state = {
       values: [],
       text: "constructor",
-      data: props.getStackedMothSales([])
+      data: props.getStackedMothSales([], ['Russia'])
     };
 
+    console.log('this.state.data');
+    console.log(this.state.data);
+    
   }
 
   handleChange = (event, index, values) => this.setState(
     { values: values,
-      data: this.props.getStackedMothSales(values || [])  
+      data: this.props.getStackedMothSales(values || [], ['USA'])  
     });
 
   selectionRenderer = (values) => {
@@ -93,7 +94,7 @@ class StackedMonthlySales extends React.Component {
               onChange={this.handleChange}
               selectionRenderer={this.selectionRenderer}
             >
-              {this.menuItems(persons)}
+              {this.menuItems(products)}
             </SelectField>
             <span> Hello {this.state.values.join()} - {this.state.text} </span>
             <div style={styles.pieChartDiv}>
@@ -120,9 +121,5 @@ class StackedMonthlySales extends React.Component {
     )
   }
 };
-/*
-StackedMonthlySales.propTypes = {
-  data: PropTypes.array
-};
-*/
+
 export default StackedMonthlySales;

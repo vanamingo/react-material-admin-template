@@ -74,8 +74,6 @@ function getRegionSales(){
     ];
 }
 
-
-
 function getProductsSales(min, max){
   return [
       new ProductSales("Product1", getYearSales(min, max)),
@@ -91,7 +89,7 @@ function getYearSales(min, max) {
     result.push({month:i, sales: getRandomInt(min, max)});
   }
   return result;
-}
+} 
 
 exports.dynamicData = dynamicData;
 exports.getRandomInt = getRandomInt;
