@@ -4,11 +4,11 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
-import GlobalStyles from '../../styles';
+import GlobalStyles from '../../../styles';
 import { green200 } from 'material-ui/styles/colors';
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import Data from '../../data';
+import Data from '../../../data';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 

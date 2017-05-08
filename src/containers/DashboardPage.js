@@ -9,7 +9,7 @@ import NewOrders from '../components/dashboard/NewOrders';
 import MonthlySales from '../components/dashboard/MonthlySales';
 import BrowserUsage from '../components/dashboard/BrowserUsage';
 import AnnualSales from '../components/dashboard/AnnualSales';
-import StackedMonthlySales from '../components/dashboard/StackedMonthlySales';
+import StackedMonthlySales from '../components/dashboard/StackedMonthlySales/StackedMonthlySales';
 import RecentlyProducts from '../components/dashboard/RecentlyProducts';
 import globalStyles from '../styles';
 import Data from '../data';
