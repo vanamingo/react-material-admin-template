@@ -117,19 +117,12 @@ function getStackedSalesForMonth(monthName, monthNumber, products, selectedCount
       return selectedCountries.length == 0 || selectedCountries.includes(c);
     });
 
-    window.d = d;
-  window.filteredCountries = filteredCountries;
-  window.monthNumber = monthNumber;
-  window.products = products;
   var result = filteredCountries
     .zipObject(filteredCountries.map(
       function (c) { 
          return d[c].getSalesByMonths(monthNumber, products)
         }).value())
     .value();
-
-  console.log('result');
-  console.log(result);
 
   return result;
 

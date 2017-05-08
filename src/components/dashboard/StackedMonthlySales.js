@@ -42,40 +42,36 @@ class StackedMonthlySales extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: [],
+      selectedProducts: [],
       text: "constructor",
       data: props.getStackedMothSales([], ['Russia'])
-    };
-
-    console.log('this.state.data');
-    console.log(this.state.data);
-    
+    };    
   }
 
-  handleChange = (event, index, values) => this.setState(
-    { values: values,
-      data: this.props.getStackedMothSales(values || [], ['USA'])  
+  handleChange = (event, index, selectedProducts) => this.setState(
+    { selectedProducts: selectedProducts,
+      data: this.props.getStackedMothSales(selectedProducts || [], ['USA'])  
     });
 
-  selectionRenderer = (values) => {
-    switch (values.length) {
+  selectionRenderer = (selectedProducts) => {
+    switch (selectedProducts.length) {
       case 0:
         return '';
       case 1:
-        return personDictionary[values[0]].name;
+        return personDictionary[selectedProducts[0]].name;
       default:
-        return `${values.length} names selected`;
+        return `${selectedProducts.length} names selected`;
     }
   }
 
-  menuItems(persons) {
-    return persons.map((person) => (
+  menuItems(products) {
+    return products.map((product) => (
       <MenuItem
-        key={person.value}
+        key={product.value}
         insetChildren={true}
-        checked={this.state.values.includes(person.value)}
-        value={person.value}
-        primaryText={person.name}
+        checked={this.state.selectedProducts.includes(product.value)}
+        value={product.value}
+        primaryText={product.name}
       />
     ));
   }
@@ -90,13 +86,13 @@ class StackedMonthlySales extends React.Component {
             <SelectField
               multiple={true}
               hintText="All products"
-              value={this.state.values}
+              value={this.state.selectedProducts}
               onChange={this.handleChange}
               selectionRenderer={this.selectionRenderer}
             >
               {this.menuItems(products)}
             </SelectField>
-            <span> Hello {this.state.values.join()} - {this.state.text} </span>
+            <span> Hello {this.state.selectedProducts.join()} - {this.state.text} </span>
             <div style={styles.pieChartDiv}>
               <ResponsiveContainer>
                 <BarChart width={600} height={300} data={this.state.data}
