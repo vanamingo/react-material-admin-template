@@ -43,18 +43,17 @@ class StackedMonthlySales extends React.Component {
     super(props);
     this.state = {
       selectedProducts: [],
-      text: "constructor",
-      data: props.getStackedMothSales([], ['Russia'])
+      selectedCountries: []
     };
   }
 
-  handleChange = (event, index, selectedProducts) => this.setState(
+  handleProductChange = (event, index, selectedProducts) => this.setState(
     {
       selectedProducts: selectedProducts,
       data: this.props.getStackedMothSales(selectedProducts || [], ['USA'])
     });
 
-  selectionRenderer = (selectedProducts) => {
+  productSelectionRenderer = (selectedProducts) => {
     switch (selectedProducts.length) {
       case 0:
         return '';
@@ -88,12 +87,11 @@ class StackedMonthlySales extends React.Component {
               multiple={true}
               hintText="All products"
               value={this.state.selectedProducts}
-              onChange={this.handleChange}
-              selectionRenderer={this.selectionRenderer}
+              onChange={this.handleProductChange}
+              selectionRenderer={this.productSelectionRenderer}
             >
               {this.menuItems(products)}
             </SelectField>
-            <span> Hello {this.state.selectedProducts.join()} - {this.state.text} </span>
             <div style={styles.pieChartDiv}>
               <ResponsiveContainer>
                 <BarChart width={600} height={300}
@@ -115,7 +113,6 @@ class StackedMonthlySales extends React.Component {
           </div>
         </div>
       </Paper>
-
     )
   }
 };
