@@ -42,8 +42,6 @@ const personDictionary = _(persons).mapKeys('value').value();
 class StackedMonthlySales extends React.Component {
 
   constructor(props) {
-    console.log('props');
-    console.log(props);
     super(props);
     this.state = {
       values: [],

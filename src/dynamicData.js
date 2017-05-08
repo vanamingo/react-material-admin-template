@@ -37,8 +37,6 @@ class Region {
     }
 
     getSalesByMonths(monthNum, products) {
-        console.log('products');
-        console.log(products);
         let regionSales = _(this.sales)
         .filter(function(value){ 
                 return !_(products).some() || products.includes(value.product);
@@ -58,7 +56,7 @@ class Region {
 
 let dynamicData = getRegionSales();
 
-console.log('dynamicDataZ');
+console.log('dynamicData');
 console.log(dynamicData);
 window.dynamicData = dynamicData;
 
