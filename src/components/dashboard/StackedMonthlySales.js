@@ -35,7 +35,7 @@ const products = [
   { value: 'Product4', name: 'Product4' },
 ];
 
-const personDictionary = _(products).mapKeys('value').value();
+const productDictionary = _(products).mapKeys('value').value();
 
 class StackedMonthlySales extends React.Component {
 
@@ -58,7 +58,7 @@ class StackedMonthlySales extends React.Component {
       case 0:
         return '';
       case 1:
-        return personDictionary[selectedProducts[0]].name;
+        return productDictionary[selectedProducts[0]].name;
       default:
         return `${selectedProducts.length} names selected`;
     }
