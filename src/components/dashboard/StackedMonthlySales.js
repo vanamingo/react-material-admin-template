@@ -37,13 +37,23 @@ const products = [
 
 const productDictionary = _(products).mapKeys('value').value();
 
+const regions = [
+  { value: 'Russia', name: 'Russia' },
+  { value: 'USA', name: 'USA' },
+  { value: 'China', name: 'China' },
+  { value: 'Europe', name: 'Europe' },
+  { value: 'India', name: 'India' }
+];
+
+const regionDictionary = _(regions).mapKeys('value').value();
+
 class StackedMonthlySales extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       selectedProducts: [],
-      selectedCountries: []
+      selectedRegions: []
     };
   }
 
@@ -63,7 +73,7 @@ class StackedMonthlySales extends React.Component {
     }
   }
 
-  menuItems(products) {
+  productMenuItems(products) {
     return products.map((product) => (
       <MenuItem
         key={product.value}
@@ -74,6 +84,36 @@ class StackedMonthlySales extends React.Component {
       />
     ));
   }
+
+  handleRegionChange = (event, index, selectedRegions) => this.setState(
+    {
+      selectedRegions: selectedRegions
+    });
+
+
+  regionSelectionRenderer = (selectedRegions) => {
+    switch (selectedRegions.length) {
+      case 0:
+        return '';
+      case 1:
+        return regionDictionary[selectedRegions[0]].name;
+      default:
+        return `${selectedRegions.length} regions selected`;
+    }
+  }
+
+  regionMenuItems(region) {
+    return regions.map((region) => (
+      <MenuItem
+        key={region.value}
+        insetChildren={true}
+        checked={this.state.selectedRegions.includes(region.value)}
+        value={region.value}
+        primaryText={region.name}
+      />
+    ));
+  }
+
 
   render() {
     return (
@@ -89,12 +129,23 @@ class StackedMonthlySales extends React.Component {
               onChange={this.handleProductChange}
               selectionRenderer={this.productSelectionRenderer}
             >
-              {this.menuItems(products)}
+              {this.productMenuItems(products)}
             </SelectField>
+
+            <SelectField
+              multiple={true}
+              hintText="All regions"
+              value={this.state.selectedRegions}
+              onChange={this.handleRegionChange}
+              selectionRenderer={this.regionSelectionRenderer}
+            >
+              {this.regionMenuItems(products)}
+            </SelectField>
+
             <div style={styles.pieChartDiv}>
               <ResponsiveContainer>
                 <BarChart width={600} height={300}
-                  data={this.props.getStackedMothSales(this.state.selectedProducts, [])}
+                  data={this.props.getStackedMothSales(this.state.selectedProducts, this.state.selectedRegions)}
                   margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <XAxis dataKey="name" />
                   <YAxis />
