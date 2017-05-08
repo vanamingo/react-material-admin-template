@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Paper from 'material-ui/Paper';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import Avatar from 'material-ui/Avatar';
@@ -11,6 +11,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import Data from '../../../data';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+
+import ProductSelector from './ProductSelector'
 
 const countryColors = Data.colorsDictionary.countries;
 
@@ -28,14 +30,7 @@ const styles = {
   }
 };
 
-const products = [
-  { value: 'Product1', name: 'Product1' },
-  { value: 'Product2', name: 'Product2' },
-  { value: 'Product3', name: 'Product3' },
-  { value: 'Product4', name: 'Product4' },
-];
 
-const productDictionary = _(products).mapKeys('value').value();
 
 const regions = [
   { value: 'Russia', name: 'Russia' },
@@ -62,28 +57,7 @@ class StackedMonthlySales extends React.Component {
       selectedProducts: selectedProducts
     });
 
-  productSelectionRenderer = (selectedProducts) => {
-    switch (selectedProducts.length) {
-      case 0:
-        return '';
-      case 1:
-        return productDictionary[selectedProducts[0]].name;
-      default:
-        return `${selectedProducts.length} names selected`;
-    }
-  }
 
-  productMenuItems(products) {
-    return products.map((product) => (
-      <MenuItem
-        key={product.value}
-        insetChildren={true}
-        checked={this.state.selectedProducts.includes(product.value)}
-        value={product.value}
-        primaryText={product.name}
-      />
-    ));
-  }
 
   handleRegionChange = (event, index, selectedRegions) => this.setState(
     {
@@ -122,15 +96,12 @@ class StackedMonthlySales extends React.Component {
         <div style={GlobalStyles.clear} />
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <SelectField
-              multiple={true}
-              hintText="All products"
-              value={this.state.selectedProducts}
-              onChange={this.handleProductChange}
-              selectionRenderer={this.productSelectionRenderer}
-            >
-              {this.productMenuItems(products)}
-            </SelectField>
+
+            <ProductSelector
+              handleProductChange={this.handleProductChange}
+              selectedProducts={this.state.selectedProducts}
+
+            />
 
             <SelectField
               multiple={true}
@@ -139,7 +110,7 @@ class StackedMonthlySales extends React.Component {
               onChange={this.handleRegionChange}
               selectionRenderer={this.regionSelectionRenderer}
             >
-              {this.regionMenuItems(products)}
+              {this.regionMenuItems(regions)}
             </SelectField>
 
             <div style={styles.pieChartDiv}>
