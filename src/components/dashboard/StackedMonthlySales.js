@@ -49,8 +49,7 @@ class StackedMonthlySales extends React.Component {
 
   handleProductChange = (event, index, selectedProducts) => this.setState(
     {
-      selectedProducts: selectedProducts,
-      data: this.props.getStackedMothSales(selectedProducts || [], ['USA'])
+      selectedProducts: selectedProducts
     });
 
   productSelectionRenderer = (selectedProducts) => {
