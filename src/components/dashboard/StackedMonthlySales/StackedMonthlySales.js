@@ -13,6 +13,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 import ProductSelector from './ProductSelector'
+import RegionSelector from './RegionSelector'
 
 const countryColors = Data.colorsDictionary.countries;
 
@@ -30,18 +31,6 @@ const styles = {
   }
 };
 
-
-
-const regions = [
-  { value: 'Russia', name: 'Russia' },
-  { value: 'USA', name: 'USA' },
-  { value: 'China', name: 'China' },
-  { value: 'Europe', name: 'Europe' },
-  { value: 'India', name: 'India' }
-];
-
-const regionDictionary = _(regions).mapKeys('value').value();
-
 class StackedMonthlySales extends React.Component {
 
   constructor(props) {
@@ -57,37 +46,10 @@ class StackedMonthlySales extends React.Component {
       selectedProducts: selectedProducts
     });
 
-
-
   handleRegionChange = (event, index, selectedRegions) => this.setState(
     {
       selectedRegions: selectedRegions
     });
-
-
-  regionSelectionRenderer = (selectedRegions) => {
-    switch (selectedRegions.length) {
-      case 0:
-        return '';
-      case 1:
-        return regionDictionary[selectedRegions[0]].name;
-      default:
-        return `${selectedRegions.length} regions selected`;
-    }
-  }
-
-  regionMenuItems(region) {
-    return regions.map((region) => (
-      <MenuItem
-        key={region.value}
-        insetChildren={true}
-        checked={this.state.selectedRegions.includes(region.value)}
-        value={region.value}
-        primaryText={region.name}
-      />
-    ));
-  }
-
 
   render() {
     return (
@@ -100,18 +62,12 @@ class StackedMonthlySales extends React.Component {
             <ProductSelector
               handleProductChange={this.handleProductChange}
               selectedProducts={this.state.selectedProducts}
-
             />
 
-            <SelectField
-              multiple={true}
-              hintText="All regions"
-              value={this.state.selectedRegions}
-              onChange={this.handleRegionChange}
-              selectionRenderer={this.regionSelectionRenderer}
-            >
-              {this.regionMenuItems(regions)}
-            </SelectField>
+            <RegionSelector
+              handleRegionChange={this.handleRegionChange}
+              selectedRegions={this.state.selectedRegions}
+            />
 
             <div style={styles.pieChartDiv}>
               <ResponsiveContainer>
