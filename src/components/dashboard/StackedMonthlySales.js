@@ -12,7 +12,7 @@ import Data from '../../data';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-const countryColors = Data.colorsDictionary.countries; 
+const countryColors = Data.colorsDictionary.countries;
 
 const styles = {
   paper: {
@@ -45,12 +45,13 @@ class StackedMonthlySales extends React.Component {
       selectedProducts: [],
       text: "constructor",
       data: props.getStackedMothSales([], ['Russia'])
-    };    
+    };
   }
 
   handleChange = (event, index, selectedProducts) => this.setState(
-    { selectedProducts: selectedProducts,
-      data: this.props.getStackedMothSales(selectedProducts || [], ['USA'])  
+    {
+      selectedProducts: selectedProducts,
+      data: this.props.getStackedMothSales(selectedProducts || [], ['USA'])
     });
 
   selectionRenderer = (selectedProducts) => {
@@ -95,7 +96,8 @@ class StackedMonthlySales extends React.Component {
             <span> Hello {this.state.selectedProducts.join()} - {this.state.text} </span>
             <div style={styles.pieChartDiv}>
               <ResponsiveContainer>
-                <BarChart width={600} height={300} data={this.state.data}
+                <BarChart width={600} height={300}
+                  data={this.props.getStackedMothSales(this.state.selectedProducts, [])}
                   margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <XAxis dataKey="name" />
                   <YAxis />
