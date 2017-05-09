@@ -72,11 +72,13 @@ const DashboardPage = () => {
 
       <div className="row">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-15 ">
-          <SalesFilter/>
+          <SalesFilter />
         </div>
       </div>
       <div className="row">
-        <ConsolidatedSalesReport getStackedMothSales={Data.dashBoardPage.getStackedMothSales} data={Data.dashBoardPage.annualSalesByRegion} />
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-15 ">
+          <ConsolidatedSalesReport getStackedMothSales={Data.dashBoardPage.getStackedMothSales} data={Data.dashBoardPage.annualSalesByRegion} />
+        </div>
       </div>
 
       <div className="row">

@@ -26,11 +26,13 @@ class ConsolidatedSalesReport extends React.Component {
     render() {
         return (
             <Paper style={styles.paper}>
-                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 m-b-15 ">
-                    <StackedMonthlySales getStackedMothSales={this.props.getStackedMothSales} />
-                </div>
-                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 m-b-15 ">
-                    <AnnualSales data={this.props.data} />
+                <div class="row">
+                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 m-b-15 ">
+                        <StackedMonthlySales getStackedMothSales={this.props.getStackedMothSales} />
+                    </div>
+                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 m-b-15 ">
+                        <AnnualSales data={this.props.data} />
+                    </div>
                 </div>
             </Paper>
         );
