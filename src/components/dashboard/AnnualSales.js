@@ -29,7 +29,7 @@ const AnnualSales = (props) => {
   }
 
   return (
-    <Paper style={styles.paper}>
+    <div>
       <span style={GlobalStyles.title}>Annual sales by region</span>
 
       <div style={GlobalStyles.clear}/>
@@ -59,7 +59,7 @@ const AnnualSales = (props) => {
           </div>
         </div>
       </div>
-    </Paper>
+    </div>
   );
 };
 

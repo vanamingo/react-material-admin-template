@@ -14,6 +14,10 @@ import RecentlyProducts from '../components/dashboard/RecentlyProducts';
 import globalStyles from '../styles';
 import Data from '../data';
 
+import ConsolidatedSalesReport from '../components/dashboard/ConsolidatedSalesReport';
+
+import SalesFilter from '../components/dashboard/SalesFilter';
+
 const DashboardPage = () => {
 
   return (
@@ -67,12 +71,12 @@ const DashboardPage = () => {
       </div>
 
       <div className="row">
-        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 m-b-15 ">
-          <StackedMonthlySales getStackedMothSales={Data.dashBoardPage.getStackedMothSales} />
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-15 ">
+          <SalesFilter/>
         </div>
-        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 m-b-15 ">
-          <AnnualSales data={Data.dashBoardPage.annualSalesByRegion} />
-        </div>
+      </div>
+      <div className="row">
+        <ConsolidatedSalesReport getStackedMothSales={Data.dashBoardPage.getStackedMothSales} data={Data.dashBoardPage.annualSalesByRegion} />
       </div>
 
       <div className="row">

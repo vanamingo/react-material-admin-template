@@ -53,7 +53,7 @@ class StackedMonthlySales extends React.Component {
 
   render() {
     return (
-      <Paper style={styles.paper}>
+      <div>
         <span style={GlobalStyles.title}>Monthly sales</span>
         <div style={GlobalStyles.clear} />
         <div className="row">
@@ -89,7 +89,7 @@ class StackedMonthlySales extends React.Component {
             </div>
           </div>
         </div>
-      </Paper>
+      </div>
     )
   }
 };
